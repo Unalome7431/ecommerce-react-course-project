@@ -1,0 +1,19 @@
+.notFoundMessageBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 60px); /* Full viewport height minus header */
+  margin-top: 60px; /* Account for fixed header */
+
+  font-family: monospace;
+  color: rgb(180, 180, 180);
+}
+
+.notFoundText {
+  font-size: 150px;
+}
+
+.notFoundDesc {
+  font-size: 30px;
+}
