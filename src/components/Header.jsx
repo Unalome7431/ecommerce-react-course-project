@@ -5,7 +5,7 @@ import logoWhite from "../assets/images/logo-white.png"
 import mobileLogoWhite from "../assets/images/mobile-logo-white.png"
 import "./header.css"
 
-export function Header() {
+export function Header({ cartItems }) {
 
   return (
     <div className="header">
@@ -34,7 +34,9 @@ export function Header() {
 
         <NavLink className="cart-link header-link" to="/checkout">
           <img className="cart-icon" src={cartIcon} />
-          <div className="cart-quantity">3</div>
+          <div className="cart-quantity">{cartItems.reduce((acc, cartItem) => {
+            return acc + cartItem.quantity
+          }, 0)}</div>
           <div className="cart-text">Cart</div>
         </NavLink>
       </div>

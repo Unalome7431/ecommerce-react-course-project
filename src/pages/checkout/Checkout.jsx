@@ -5,8 +5,7 @@ import { CheckoutHeader } from "./CheckoutHeader";
 import { OrderSummary } from "./OrderSummary";
 import { PaymentSummary } from "./PaymentSummary";
 
-export function Checkout() {
-  const [cartItems, setCartItems] = useState([]);
+export function Checkout({ cartItems }) {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState([]);
   
