@@ -12,22 +12,22 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const {orderId, productId} = useParams();
 
-  useEffect(() => {
-    const fetchAppData = async () => {
-      let response = await axios.get("/api/cart-items?expand=product");
-      setCartItems(response.data);
-    };
+  const loadCartItems = async () => {
+    let response = await axios.get("/api/cart-items?expand=product");
+    setCartItems(response.data);
+  };
 
-    fetchAppData();
+  useEffect(() => {
+    loadCartItems();
   }, []);
   return (
     <>
       <Routes>
-        <Route index element={<HomePage cartItems={cartItems}/>} />
-        <Route path='checkout' element={<Checkout cartItems={cartItems}/>} />
-        <Route path='orders' element={<Orders cartItems={cartItems}/>} />
-        <Route path='tracking/:orderId/:productId' element={<Tracking cartItems={cartItems}/>} />
-        <Route path='*' element={<NotFound cartItems={cartItems}/>} />
+        <Route index element={<HomePage cartItems={cartItems} loadCartItems={loadCartItems} />} />
+        <Route path='checkout' element={<Checkout cartItems={cartItems} />} />
+        <Route path='orders' element={<Orders cartItems={cartItems} />} />
+        <Route path='tracking/:orderId/:productId' element={<Tracking cartItems={cartItems} />} />
+        <Route path='*' element={<NotFound cartItems={cartItems} />} />
       </Routes>
     </>
   )

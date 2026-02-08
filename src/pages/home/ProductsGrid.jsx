@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { formatMoney } from "../../utils/money";
 
-export function ProductsGrid() {
+export function ProductsGrid({ loadCartItems }) {
   const [products, setProducts] = useState(null);
+  const [quantity, setQuantity] = useState(null);
 
   useEffect(() => {
     const fetchAppData = async () => {
@@ -18,6 +19,19 @@ export function ProductsGrid() {
 
     fetchAppData();
   }, []);
+
+  async function addToCart(product) {
+    await axios.post('/api/cart-items', {
+      productId: product.id,
+      quantity
+    })
+    await loadCartItems()
+  }
+
+  function selectQuantity(event) {
+    const quantity = Number(event.target.value)
+    setQuantity(quantity)
+  }
 
   return (
     <div className="products-grid">
@@ -49,7 +63,7 @@ export function ProductsGrid() {
             </div>
 
             <div className="product-quantity-container">
-              <select>
+              <select value={quantity} onChange={selectQuantity}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -70,7 +84,7 @@ export function ProductsGrid() {
               Added
             </div>
 
-            <button className="add-to-cart-button button-primary">
+            <button className="add-to-cart-button button-primary" onClick={() => addToCart(product)}>
               Add to Cart
             </button>
           </div>

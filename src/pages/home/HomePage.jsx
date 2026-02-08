@@ -2,7 +2,7 @@ import { Header } from "../../components/Header";
 import "./HomePage.css";
 import { ProductsGrid } from "./ProductsGrid";
 
-export function HomePage({ cartItems }) {
+export function HomePage({ cartItems, loadCartItems }) {
   return (
     <>
       <link rel="icon" href="/images/favicon/home-favicon.png" />
@@ -10,7 +10,7 @@ export function HomePage({ cartItems }) {
 
       <Header cartItems={cartItems}/>
       <div className="home-page">
-        <ProductsGrid />
+        <ProductsGrid loadCartItems={loadCartItems} />
       </div>
     </>
   );
