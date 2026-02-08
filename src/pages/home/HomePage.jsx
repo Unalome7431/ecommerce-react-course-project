@@ -1,9 +1,9 @@
-import { Header } from "../components/Header"
+import { Header } from "../../components/Header"
 import checkmarkDefault from "../assets/images/icons/checkmark.png"
 import "./HomePage.css"
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { formatMoney } from "../utils/money"
+import { formatMoney } from "../../utils/money"
 
 export function HomePage() {
   const [products, setProducts] = useState(null)
