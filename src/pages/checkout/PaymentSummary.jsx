@@ -1,19 +1,6 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { formatMoney } from "../../utils/money";
 
-export function PaymentSummary() {
-  const [paymentSummary, setPaymentSummary] = useState([])
-  
-  useEffect(() => {
-    const fetchAppData = async () => {
-      let response = await axios.get("/api/payment-summary")
-      setPaymentSummary(response.data)
-    };
-
-    fetchAppData();
-  }, []);
-  
+export function PaymentSummary({ paymentSummary }) {
   return (
     <div className="payment-summary">
       <div className="payment-summary-title">Payment Summary</div>
