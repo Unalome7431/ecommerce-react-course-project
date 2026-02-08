@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { Header } from "../components/Header";
+import { Header } from "../../components/Header";
 import buyAgain from "../assets/images/icons/buy-again.png";
 import "./Orders.css";
 import { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 import dayjs from "dayjs";
-import { formatMoney } from "../utils/money";
+import { formatMoney } from "../../utils/money";
 
 export function Orders() {
   const [orders, setOrders] = useState([]);
