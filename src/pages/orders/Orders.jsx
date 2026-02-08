@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Header } from "../../components/Header";
-import buyAgain from "../assets/images/icons/buy-again.png";
+import buyAgain from "../../assets/images/icons/buy-again.png";
 import "./Orders.css";
 import { Fragment, useEffect, useState } from "react";
 import axios from "axios";
@@ -31,7 +31,7 @@ export function Orders() {
         <div className="orders-grid">
           {orders.map((order) => {
             return (
-              <div className="order-container">
+              <div className="order-container" key={order.id}>
                 <div className="order-header">
                   <div className="order-header-left-section">
                     <div className="order-date">
@@ -53,7 +53,7 @@ export function Orders() {
                 <div className="order-details-grid">
                   {order.products.map((orderProduct) => {
                     return (
-                      <Fragment key={orderProduct.product.productId}>
+                      <Fragment key={orderProduct.product.id}>
                         <div className="product-image-container">
                           <img src={orderProduct.product.image} />
                         </div>
