@@ -5,8 +5,8 @@ import axios from 'axios';
 import './App.css'
 import { Checkout } from './pages/checkout/Checkout'
 import { Orders } from './pages/orders/Orders'
-import { Tracking } from './pages/Tracking'
-import { NotFound } from './pages/NotFound'
+import { Tracking } from './pages/tracking/Tracking'
+import { NotFound } from './pages/notfound/NotFound'
 
 function App() {
   const [cartItems, setCartItems] = useState([]);

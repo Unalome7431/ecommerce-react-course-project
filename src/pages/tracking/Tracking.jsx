@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { Header } from "../components/Header";
+import { Header } from "../../components/Header";
 import "./Tracking.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
