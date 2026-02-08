@@ -9,7 +9,7 @@ export function OrdersGrid({ orders }) {
           <div className="order-container" key={order.id}>
             <OrderHeader order={order} />
 
-            <OrderDetailsGrid order={order} />
+            <OrderDetailsGrid order={order}/>
           </div>
         );
       })}

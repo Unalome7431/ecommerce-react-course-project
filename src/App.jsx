@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useParams } from 'react-router-dom'
 import { HomePage } from './pages/home/HomePage'
 import { useState, useEffect } from 'react'
 import axios from 'axios';
@@ -10,6 +10,7 @@ import { NotFound } from './pages/NotFound'
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+  const {orderId, productId} = useParams();
 
   useEffect(() => {
     const fetchAppData = async () => {
@@ -25,7 +26,7 @@ function App() {
         <Route index element={<HomePage cartItems={cartItems}/>} />
         <Route path='checkout' element={<Checkout cartItems={cartItems}/>} />
         <Route path='orders' element={<Orders cartItems={cartItems}/>} />
-        <Route path='tracking' element={<Tracking cartItems={cartItems}/>} />
+        <Route path='tracking/:orderId/:productId' element={<Tracking cartItems={cartItems}/>} />
         <Route path='*' element={<NotFound cartItems={cartItems}/>} />
       </Routes>
     </>
