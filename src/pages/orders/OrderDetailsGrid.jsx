@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Fragment } from "react";
 import dayjs from "dayjs";
-import buyAgain from '../../assets/images/icons/buy-again.png'
+import buyAgain from "../../assets/images/icons/buy-again.png";
 
 export function OrderDetailsGrid({ order }) {
   return (
@@ -17,7 +17,7 @@ export function OrderDetailsGrid({ order }) {
               <div className="product-name">{orderProduct.product.name}</div>
               <div className="product-delivery-date">
                 Arriving on:{" "}
-                {dayjs(orderProduct.estimatedDeliveryTimeMs).format("MMMM d")}
+                {dayjs(orderProduct.estimatedDeliveryTimeMs).format("MMMM D")}
               </div>
               <div className="product-quantity">
                 Quantity: {orderProduct.quantity}
