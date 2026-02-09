@@ -14,10 +14,10 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: 'http://localhost:3000'
-      }, // changed https to http
+      },
       '/images': {
         target: 'http://localhost:3000'
-      } // changed https to http
+      }
     }
   }
 })

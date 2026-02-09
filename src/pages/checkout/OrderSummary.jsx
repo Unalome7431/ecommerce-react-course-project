@@ -1,8 +1,8 @@
-import { DeliveryOption } from './DeliveryOption';
-import { CartItemDetails } from './CartItemDetails';
-import { DeliveryDate } from './DeliveryDate';
+import { DeliveryOption } from "./DeliveryOption";
+import { CartItemDetails } from "./CartItemDetails";
+import { DeliveryDate } from "./DeliveryDate";
 
-export function OrderSummary({ cartItems, deliveryOptions}) {
+export function OrderSummary({ cartItems, deliveryOptions, loadCartItems }) {
   return (
     <div className="order-summary">
       {cartItems.map((cartItem) => {
@@ -16,7 +16,11 @@ export function OrderSummary({ cartItems, deliveryOptions}) {
 
             <div className="cart-item-details-grid">
               <CartItemDetails cartItem={cartItem} />
-              <DeliveryOption deliveryOptions={deliveryOptions} cartItem={cartItem}/>
+              <DeliveryOption
+                deliveryOptions={deliveryOptions}
+                cartItem={cartItem}
+                loadCartItems={loadCartItems}
+              />
             </div>
           </div>
         );

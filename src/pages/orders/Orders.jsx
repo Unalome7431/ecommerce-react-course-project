@@ -3,6 +3,7 @@ import "./Orders.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { OrdersGrid } from "./OrdersGrid";
+import { Seo } from "../../components/Seo";
 
 export function Orders({ cartItems }) {
   const [orders, setOrders] = useState([]);
@@ -18,10 +19,9 @@ export function Orders({ cartItems }) {
 
   return (
     <>
-      <link rel="icon" href="/images/favicon/orders-favicon.png" />
-      <title>Orders</title>
+      <Seo title="Orders" icon="/images/orders-favicon.png" />
 
-      <Header cartItems={cartItems}/>
+      <Header cartItems={cartItems} />
       <div className="orders-page">
         <div className="page-title">Your Orders</div>
 
