@@ -25,14 +25,14 @@ export function Checkout({ cartItems, loadCartItems }) {
     const fetchAppData = async () => {
       let response = await axios.get("/api/payment-summary");
       setPaymentSummary(response.data);
-    }
+    };
 
     fetchAppData();
-  }, [cartItems])
+  }, [cartItems]);
 
   return (
     <>
-      <Seo title='Checkout' icon="/images/cart-favicon.png" />
+      <Seo title="Checkout" icon="/images/cart-favicon.png" />
 
       <CheckoutHeader cartItems={cartItems} />
 
@@ -46,7 +46,10 @@ export function Checkout({ cartItems, loadCartItems }) {
             loadCartItems={loadCartItems}
           />
 
-          <PaymentSummary paymentSummary={paymentSummary} />
+          <PaymentSummary
+            paymentSummary={paymentSummary}
+            loadCartItems={loadCartItems}
+          />
         </div>
       </div>
     </>
