@@ -15,6 +15,8 @@ function App() {
   const loadCartItems = async () => {
     let response = await axios.get("/api/cart-items?expand=product");
     setCartItems(response.data);
+
+    window.axios = axios;
   };
 
   useEffect(() => {
