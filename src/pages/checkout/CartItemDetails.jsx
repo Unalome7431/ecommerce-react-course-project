@@ -25,6 +25,16 @@ export function CartItemDetails({ cartItem, loadCartItems }) {
     setIsUpdating(!isUpdating)
   }
 
+  async function handleUpdateKeyDown(event) {
+    if (event.key === 'Enter') {
+      setNewQuantity(event)
+      updateQuantity()
+    } else if (event.key === 'Escape') {
+      setQuantity(cartItem.quantity)
+      setIsUpdating(false)
+    }
+  }
+
   function setNewQuantity(event) {
     setQuantity(Number(event.target.value))
   }
@@ -42,7 +52,7 @@ export function CartItemDetails({ cartItem, loadCartItems }) {
           <span>
             Quantity:{" "}
             {isUpdating 
-            ? <input className='quantity-textbox' type="text" value={quantity} onChange={setNewQuantity} />
+            ? <input className='quantity-textbox' type="text" value={quantity} onChange={setNewQuantity} onKeyDown={handleUpdateKeyDown} />
             : <span className="quantity-label">{cartItem.quantity}</span>
             }
           </span>
