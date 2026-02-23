@@ -1,3 +1,3 @@
 export function formatMoney(price) {
-  return `$${(price / 100).toFixed(2)}`
+  return `${(price < 0 ? "-$" : "$") + (Math.abs(price) / 100).toFixed(2)}`
 }
