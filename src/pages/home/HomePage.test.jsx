@@ -9,8 +9,10 @@ vi.mock('axios')
 
 describe('HomePage component', () => {
   let loadCart
+  let user
+  let productContainers
 
-  beforeEach(() => {
+  beforeEach( async () => {
     axios.get.mockImplementation(async (urlPath) => {
       if (urlPath === '/api/products') {
         return {
@@ -40,19 +42,21 @@ describe('HomePage component', () => {
           ]
         }
       }
+    })
 
     loadCart = vi.fn()
-  })})
+    user = userEvent.setup()
 
-  it('display correct products', async () => {
     render(
       <MemoryRouter>
         <HomePage cartItems={[]} loadCartItems={loadCart} />
       </MemoryRouter>
     )
 
-    const productContainers = await screen.findAllByTestId('product-container')
+    productContainers = await screen.findAllByTestId('product-container')
+  })
 
+  it('display correct products', async () => {
     expect(productContainers.length).toBe(2)
 
     expect(
@@ -62,6 +66,33 @@ describe('HomePage component', () => {
     expect(
       within(productContainers[1]).getByText('Intermediate Size Basketball')
     ).toBeInTheDocument()
+  })
 
+  it('clicking add to cart button', async () => {
+    const firstContainerButton = within(productContainers[0]).getByTestId('add-to-cart-button')
+    const secondContainerButton = within(productContainers[1]).getByTestId('add-to-cart-button')
+
+    const firstContainerSelector = within(productContainers[0]).getByTestId('quantity-selector')
+    const secondContainerSelector = within(productContainers[1]).getByTestId('quantity-selector')
+
+    await user.selectOptions(firstContainerSelector, '2')
+    await user.selectOptions(secondContainerSelector, '3')
+    await user.click(firstContainerButton)
+    await user.click(secondContainerButton)
+    expect(axios.post).toHaveBeenNthCalledWith(1,
+      '/api/cart-items', 
+      {
+        productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
+        quantity: 2
+      }
+    )
+    expect(axios.post).toHaveBeenNthCalledWith(2, 
+      '/api/cart-items',
+      {
+        productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
+        quantity: 3
+      }
+    )
+    expect(loadCart).toHaveBeenCalledTimes(2)
   })
 })
